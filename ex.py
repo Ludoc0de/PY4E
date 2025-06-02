@@ -53,3 +53,37 @@
 # sliceStr = str[20:26]
 # number = float(sliceStr)
 # print(number)
+
+# Write a program to read through a file and print the contents of the file (line by line) all in upper case. Executing the program will look as follows:
+# fHandle = open("mbox.txt")
+# rHandle = fHandle.read()
+# print(rHandle[0:20].upper())
+
+# Write a program to prompt for a file name, and then read through the file and look for lines of the form:X-DSPAM-Confidence: 0.8475
+# fName = input("enter your file name: \n")
+# fHandle = open(fName)
+# number = 0
+# count = 0
+# for lines in fHandle:
+#     if lines.startswith("X-DSPAM-Confidence"):
+#         # print(lines)
+#         pos = lines.find("0")
+#         number = number + float(lines[pos:])
+#         # print(number)
+#         count = count + 1
+# print(number)
+# print(count)
+# averageNumber = number / count
+# print(averageNumber)
+
+# add an Easter Egg to the program
+fName = input("enter your file name: \n")
+fHandle = "null"
+try:
+    if fName == "Which pill?":
+        print("hey !!!! How did you ind my easter egg word ?!")
+    elif fName:
+        fHandle = open(fName)
+        print(fHandle)
+except:
+    print("excuse me ? Error file name")
