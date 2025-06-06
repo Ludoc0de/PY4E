@@ -55,7 +55,7 @@
 # print(number)
 
 # Write a program to read through a file and print the contents of the file (line by line) all in upper case. Executing the program will look as follows:
-# fHandle = open("mbox.txt")
+# fHandle = open("mboxs.txt")
 # rHandle = fHandle.read()
 # print(rHandle[0:20].upper())
 
@@ -77,13 +77,45 @@
 # print(averageNumber)
 
 # add an Easter Egg to the program
-fName = input("enter your file name: \n")
-fHandle = "null"
-try:
-    if fName == "Which pill?":
-        print("hey !!!! How did you ind my easter egg word ?!")
-    elif fName:
-        fHandle = open(fName)
-        print(fHandle)
-except:
-    print("excuse me ? Error file name")
+# fName = input("enter your file name: \n")
+# fHandle = "null"
+# try:
+#     if fName == "Which pill?":
+#         print("hey !!!! How did you ind my easter egg word ?!")
+#     elif fName:
+#         fHandle = open(fName)
+#         print(fHandle)
+# except:
+#     print("excuse me ? Error file name")
+
+# 8.4
+# fname = input("Enter file name: ")
+# fh = open(fname)
+# lst = list()
+# for line in fh:
+#     # print(line.rstrip())
+#     words = line.split()
+#     for word in words:
+#         if not word in lst:
+#             lst.append(word)
+# lst.sort()
+# print(lst)
+
+# 8.5
+# fname = input("Enter file name: ")
+# if len(fname) < 1:
+#     fname = "mboxs.txt"
+
+# fh = open(fname)
+# # fh = open("mboxs.txt")
+# count = 0
+# for line in fh:
+#     words = line.split()
+#     if len(words) == 0:
+#         continue
+#     if words[0] != "From":
+#         continue
+#     count = count + 1
+#     print(words[1])
+
+# print("There were", count, "lines in the file with From as the first word")
