@@ -157,12 +157,10 @@ import string
 handle = open("mboxs.txt")
 counts = dict()
 for lines in handle:
-    if lines.startswith("From:"):
-        print(lines)
+    if lines.startswith("From "):
         second_word = lines.split()[1:2]
-        print(second_word)
         for mail in second_word:
             counts[mail] = counts.get(mail, 0) + 1
 for key in counts:
-    if counts[key] > 4:
+    if counts[key] > counts[mail] - 1:
         print(key, counts[key])
