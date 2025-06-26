@@ -118,3 +118,51 @@
 #     print(words[1])
 
 # print("There were", count, "lines in the file with From as the first word")
+
+# 9.1
+# fname = input("Enter file name: ")
+# if len(fname) < 1:
+#     fname = "words.txt"
+# fh = open(fname)
+# print(fh)
+# # fh = open("words.txt")
+# words2dict = dict()
+# for line in fh:
+#     words = line.split()
+#     print(words)
+#     for word in words:
+#         words2dict[word] = 1
+# print(words2dict)
+# print("data" in words2dict)
+
+# fh = open("romeo.txt")
+# count = dict()
+# for line in fh:
+#     words = line.split()
+#     for word in words:
+#         count[word] = count.get(word, 0) + 1
+# print(count)
+# for key in count:
+#     if count[key] > 2:
+#         print("key > 3 :", key)
+
+# 9.4
+# Write a program to read through the mbox-short.txt and figure out who has sent the greatest number of mail messages. The program looks for 'From ' lines and takes the second word of those lines as the person who sent the mail. The program creates a Python dictionary that maps the sender's mail address to a count of the number of times they appear in the file. After the dictionary is produced, the program reads through the dictionary using a maximum loop to find the most prolific committer.
+import string
+
+# name = input("Enter file:")
+# if len(name) < 1:
+#     name = "mboxs.txt"
+# handle = open(name)
+handle = open("mboxs.txt")
+counts = dict()
+for lines in handle:
+    if lines.startswith("From:"):
+        print(lines)
+        second_word = lines.split()[1:2]
+        print(second_word)
+        for mail in second_word:
+            counts[mail] = counts.get(mail, 0) + 1
+for key in counts:
+    if counts[key] > 4:
+        print(key, counts[key])
