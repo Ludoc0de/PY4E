@@ -154,13 +154,37 @@ import string
 # if len(name) < 1:
 #     name = "mboxs.txt"
 # handle = open(name)
-handle = open("mboxs.txt")
-counts = dict()
-for lines in handle:
-    if lines.startswith("From "):
-        second_word = lines.split()[1:2]
-        for mail in second_word:
-            counts[mail] = counts.get(mail, 0) + 1
-for key in counts:
-    if counts[key] > counts[mail] - 1:
-        print(key, counts[key])
+# handle = open("mboxs.txt")
+# counts = dict()
+# for lines in handle:
+#     if lines.startswith("From "):
+#         second_word = lines.split()[1:2]
+#         for mail in second_word:
+#             counts[mail] = counts.get(mail, 0) + 1
+# for key in counts:
+#     if counts[key] > counts[mail] - 1:
+#         print(key, counts[key])
+
+# fh = open("mboxs.txt")
+# counts = dict()
+# max_count = 0
+# max_email = None
+# for lines in fh:
+#     if lines.startswith("From:"):
+#         second_words = lines.split()[1:2]
+#         for mail in second_words:
+#             counts[mail] = counts.get(mail, 0) + 1
+# for key in counts:
+#     if counts[key] > max_count:
+#         max_count = counts[key]
+#         max_email = key
+# print(max_email, max_count)
+
+# lst = list()
+# for key, val in list(counts.items()):
+#     lst.append((val, key))
+
+# lst.sort(reverse=True)
+
+# for key, val in lst:
+#     print(key, val)
