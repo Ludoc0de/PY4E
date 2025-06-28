@@ -188,3 +188,29 @@ import string
 
 # for key, val in lst:
 #     print(key, val)
+
+handle = open("mboxs.txt")
+counts = dict()
+max_count = 0
+max_hour = None
+for lines in handle:
+    if lines.startswith("From "):
+        complete_time = lines.split()[5:6]
+        for time in complete_time:
+            hours = time.split(":")[0:1]
+            for hour in hours:
+                counts[hour] = counts.get(hour, 0) + 1
+for key in counts:
+    if counts[key] > max_count:
+        max_count = counts[key]
+        max_hour = key
+print(max_hour, max_count)
+
+lst = list()
+for key, val in list(counts.items()):
+    lst.append((val, key))
+
+lst.sort(reverse=True)
+
+for key, val in lst:
+    print(key, val)
