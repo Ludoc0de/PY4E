@@ -216,15 +216,14 @@ import string
 #     print(key, val)
 
 import re
-handle = open('resum24.txt')
-cal = 0
-lst = list()
 
+handle = open("resum2225867.txt")
+total = 0
 for line in handle:
     line = line.rstrip()
-    test = re.findall('[0-9]+', line)
-    if len(test)> 0:
+    test = re.findall("[0-9]+", line)
+    if len(test) > 0:
         for num in test:
-            cal += int(num)
+            total += int(num)
 
-print(cal)
+print(total)
