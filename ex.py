@@ -148,7 +148,7 @@
 
 # 9.4
 # Write a program to read through the mbox-short.txt and figure out who has sent the greatest number of mail messages. The program looks for 'From ' lines and takes the second word of those lines as the person who sent the mail. The program creates a Python dictionary that maps the sender's mail address to a count of the number of times they appear in the file. After the dictionary is produced, the program reads through the dictionary using a maximum loop to find the most prolific committer.
-import string
+# import string
 
 # name = input("Enter file:")
 # if len(name) < 1:
@@ -215,15 +215,30 @@ import string
 # for key, val in lst:
 #     print(key, val)
 
-import re
+# import re
 
-handle = open("resum2225867.txt")
-total = 0
-for line in handle:
-    line = line.rstrip()
-    test = re.findall("[0-9]+", line)
-    if len(test) > 0:
-        for num in test:
-            total += int(num)
+# handle = open("resum2225867.txt")
+# total = 0
+# for line in handle:
+#     line = line.rstrip()
+#     test = re.findall("[0-9]+", line)
+#     if len(test) > 0:
+#         for num in test:
+#             total += int(num)
 
-print(total)
+# print(total)
+
+import socket
+
+mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+mysock.connect(("google.com", 80))
+cmd = "GET https://www.google.com/ HTTP/1.0\r\n\r\n".encode()
+mysock.send(cmd)
+
+while True:
+    data = mysock.recv(512)
+    if len(data) < 1:
+        break
+    print(data.decode(), end="")
+
+mysock.close()
