@@ -228,17 +228,73 @@
 
 # print(total)
 
-import socket
+# import socket
 
-mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-mysock.connect(("google.com", 80))
-cmd = "GET https://www.google.com/ HTTP/1.0\r\n\r\n".encode()
-mysock.send(cmd)
+# mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# mysock.connect(("google.com", 80))
+# cmd = "GET https://www.google.com/ HTTP/1.0\r\n\r\n".encode()
+# mysock.send(cmd)
 
-while True:
-    data = mysock.recv(512)
-    if len(data) < 1:
-        break
-    print(data.decode(), end="")
+# while True:
+#     data = mysock.recv(512)
+#     if len(data) < 1:
+#         break
+#     print(data.decode(), end="")
 
-mysock.close()
+# mysock.close()
+
+# from urllib.request import urlopen
+# from bs4 import BeautifulSoup
+# import ssl
+
+# # Ignore SSL certificate errors
+# ctx = ssl.create_default_context()
+# ctx.check_hostname = False
+# ctx.verify_mode = ssl.CERT_NONE
+
+# # url = input("Enter - ")
+# url = "http://py4e-data.dr-chuck.net/comments_2225869.html"
+# html = urlopen(url, context=ctx).read()
+# soup = BeautifulSoup(html, "html.parser")
+
+# # Retrieve all of the anchor tags
+# total = 0
+# lst = list()
+# tags = soup("span")
+# for tag in tags:
+#     # Look at the parts of a tag
+#     # print("TAG:", tag)
+#     # print("URL:", tag.get("href", None))
+#     # print("Contents:", tag.contents[0])
+#     # print("Attrs:", tag.attrs)
+#     span = tag.contents[0:1]
+#     # print(span)
+#     for number in span:
+#         lst.append(number)
+#         total += int(number)
+# print(total)
+# print(lst)
+
+import urllib.request, urllib.parse, urllib.error
+from bs4 import BeautifulSoup
+import ssl  # defauts to certicate verification and most secure protocol (now TLS)
+
+# Ignore SSL/TLS certificate errors
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+# url = input("Enter - ")
+url = "http://py4e-data.dr-chuck.net/known_by_Zaaine.html"
+html = urllib.request.urlopen(url, context=ctx).read()
+soup = BeautifulSoup(html, "html.parser")
+
+# Retrieve all of the anchor tags
+count = 0
+tags = soup("a")
+for tag in tags:
+    count += 1
+    # print(tag.get("href", None), count)
+    if count == 18:
+        link = tag.get("href", None)
+        print(link)
