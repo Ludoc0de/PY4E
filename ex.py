@@ -1,3 +1,5 @@
+# print("new knowledge")
+
 # largest = None
 # smallest = None
 # while True:
@@ -275,19 +277,19 @@
 # print(total)
 # print(lst)
 
-import urllib.request, urllib.parse, urllib.error
-from bs4 import BeautifulSoup
-import ssl  # defauts to certicate verification and most secure protocol (now TLS)
+# import urllib.request, urllib.parse, urllib.error
+# from bs4 import BeautifulSoup
+# import ssl  # defauts to certicate verification and most secure protocol (now TLS)
 
 # Ignore SSL/TLS certificate errors
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
+# ctx = ssl.create_default_context()
+# ctx.check_hostname = False
+# ctx.verify_mode = ssl.CERT_NONE
 
 # url = input("Enter - ")
-url = "http://py4e-data.dr-chuck.net/known_by_Zaaine.html"
-html = urllib.request.urlopen(url, context=ctx).read()
-soup = BeautifulSoup(html, "html.parser")
+# url = "http://py4e-data.dr-chuck.net/known_by_Zaaine.html"
+# html = urllib.request.urlopen(url, context=ctx).read()
+# soup = BeautifulSoup(html, "html.parser")
 
 # Retrieve all of the anchor tags
 # count = 0
@@ -299,24 +301,43 @@ soup = BeautifulSoup(html, "html.parser")
 #         link = tag.get("href", None)
 #         print(link)
 
+# import urllib.request
+# import xml.etree.ElementTree as ET
+
+# url = input("Enter location: ")
+# if len(url) < 1:
+#     url = "http://py4e-data.dr-chuck.net/comments_2225871.xml"
+
+# print("Retrieving", url)
+# uh = urllib.request.urlopen(url)
+# data = uh.read()
+# print("Retrieved", len(data), "characters")
+# tree = ET.fromstring(data)
+
+# counts = tree.findall(".//count")
+# nums = list()
+# for result in counts:
+#     print(result.text)
+#     nums.append(int(result.text))
+
+# print("Count:", len(nums))
+# print("Sum:", sum(nums))
+
+
 import urllib.request
-import xml.etree.ElementTree as ET
+import json
 
 url = input("Enter location: ")
 if len(url) < 1:
-    url = "http://py4e-data.dr-chuck.net/comments_2225871.xml"
+    url = "https://py4e-data.dr-chuck.net/comments_42.json"
 
-print("Retrieving", url)
 uh = urllib.request.urlopen(url)
 data = uh.read()
 print("Retrieved", len(data), "characters")
-tree = ET.fromstring(data)
+info = json.loads(data)
+result = list()
+for item in info["comments"]:
+    result.append(item["count"])
 
-counts = tree.findall(".//count")
-nums = list()
-for result in counts:
-    print(result.text)
-    nums.append(int(result.text))
-
-print("Count:", len(nums))
-print("Sum:", sum(nums))
+print("Count:", len(result))
+print("Sum:", sum(result))
