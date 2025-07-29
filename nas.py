@@ -1,27 +1,45 @@
 import subprocess
 import getpass
 
-user = input("enter user: ")
-userPassword = getpass.getpass("enter password: ")
-ipAdress = input("ip adress: ")
+answer = input("Do you need to connect the nas: ").lower()
+if answer == "yes" or answer == "oui":
+    user = input("enter user: ")
+    userPassword = getpass.getpass("enter password: ")
+    ip = input("enter the NAS ip adress: ")
 
+    options = f"username={user},password={userPassword},noperm"
 
-options = f"username={user},password={userPassword},noperm"
+    cmd = [
+        "sudo",
+        "mount",
+        "-t",
+        "cifs",
+        f"//{ip}/Public",
+        "/home/pi/Partage",
+        "-o",
+        options,
+    ]
 
-cmd = [
-    "sudo",
-    "mount",
-    "-t",
-    "cifs",
-    f"//{ipAdress}/Public",
-    "/home/pi/Partage",
-    "-o",
-    options,
-]
+    res = subprocess.run(cmd, text=True, capture_output=True)
 
-res = subprocess.run(cmd, text=True, capture_output=True)
+    if res.returncode != 0:
+        print("Erreur :", res.stderr.strip())
+    else:
+        print("Connected !")
 
-if res.returncode != 0:
-    print("Erreur :", res.stderr.strip())
+elif answer == "disconected" or answer == "d":
+    cmd = [
+        "sudo",
+        "umount",
+        "/home/pi/Partage",
+    ]
+
+    res = subprocess.run(cmd, text=True, capture_output=True)
+
+    if res.returncode != 0:
+        print("Erreur :", res.stderr.strip())
+    else:
+        print("Disconnected !")
+
 else:
-    print("Monté !")
+    print("Your answer its incorrect!")
