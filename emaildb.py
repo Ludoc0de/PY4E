@@ -44,12 +44,12 @@ import sqlite3
 conn = sqlite3.connect("emaildb.sqlite")
 cur = conn.cursor()
 
-# cur.execute("DROP TABLE IF EXISTS Counts")
+cur.execute("DROP TABLE IF EXISTS Counts")
 
-# cur.execute(
-#     """
-# CREATE TABLE Counts (org TEXT, count INTEGER)"""
-# )
+cur.execute(
+    """
+CREATE TABLE Counts (org TEXT, count INTEGER)"""
+)
 fname = input("Enter file name: ")
 if len(fname) < 1:
     fname = "mbox.txt"
@@ -61,7 +61,6 @@ for line in fh:
     pieces = line.split()
     email = pieces[1]
     org = email.split("@")[1]
-    print(org)
     cur.execute("SELECT count FROM Counts WHERE org = ? ", (org,))
     row = cur.fetchone()
     if row is None:
