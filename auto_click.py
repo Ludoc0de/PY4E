@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -9,11 +11,12 @@ from selenium.webdriver.common.keys import Keys
 import time
 
 # 1. URL target
+load_dotenv()
 URL_TARGET = "https://www.google.com"
 URL_LOGIN = "https://accounts.google.com"
-USERNAME = "bob"
-PASSWORD = "test"
-TEXT_TO_SEARCH = "test"
+USERNAME = os.getenv("USERNAME")
+PASSWORD = os.getenv("PASSWORD")
+TEXT_TO_SEARCH = "TEXT_TO_SEARCH"
 TEXT_TO_CLICK = "affecter"
 USERNAME_SELECTOR_BY = By.NAME
 USERNAME_SELECTOR_VALUE = "username"
