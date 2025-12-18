@@ -17,9 +17,9 @@ for file in all_files:
 print(f"Il y a {len(pdf_to_merge)} fichier pdf trouvé dans le dossier")
 
 # fusionne les PDF dans pdf_to_merge
-pdf_to_merge_sorted = pdf_to_merge.sort()
+pdf_to_merge.sort()
 
-for pdf in pdf_to_merge_sorted:
+for pdf in pdf_to_merge:
     try:
         merger.append(pdf)
         print(emoji.emojize(f"👍{pdf} ajouté avec succès!"))
