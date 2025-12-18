@@ -22,9 +22,15 @@ pdf_to_merge_sorted = pdf_to_merge.sort()
 for pdf in pdf_to_merge_sorted:
     try:
         merger.append(pdf)
-        print(f"👌🏾{pdf} ajouté avec succès")
+         print(
+            emoji.emojize(f"👍{pdf} ajouté avec succès!")
+        )
+        # print(
+        #     emoji.emojize(f":OK_hand_medium-dark_skin_tone:'{pdf} ajouté avec succès!")
+        # )
     except Exception as e:
-        print(f"Erreur sur le fichier {pdf} : {e} ")
+        print(emoji.emojize(f"👎Erreur sur le fichier {pdf} : {e} "))
 
+# Enregistre les fichiers pdf fusionné en un seul fichié
 with open("merged.pdf", "wb") as f:
     merger.write(f)
