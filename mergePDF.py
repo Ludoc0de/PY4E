@@ -22,9 +22,7 @@ pdf_to_merge_sorted = pdf_to_merge.sort()
 for pdf in pdf_to_merge_sorted:
     try:
         merger.append(pdf)
-         print(
-            emoji.emojize(f"👍{pdf} ajouté avec succès!")
-        )
+        print(emoji.emojize(f"👍{pdf} ajouté avec succès!"))
         # print(
         #     emoji.emojize(f":OK_hand_medium-dark_skin_tone:'{pdf} ajouté avec succès!")
         # )
